@@ -1,8 +1,10 @@
 interface NavButtonsProps {
     toggleResumeDialogue: () => void;
+    setIsMenuOpen?: (isMenuOpen: boolean) => void;
 }
 export default function NavButtons({
     toggleResumeDialogue,
+    setIsMenuOpen,
 }: Readonly<NavButtonsProps>) {
     return (
         <>
@@ -10,6 +12,7 @@ export default function NavButtons({
                 className="text-white flex items-center font-semibold hover:underline-none"
                 onClick={() => {
                     toggleResumeDialogue();
+                    if (setIsMenuOpen) setIsMenuOpen(false);
                 }}
             >
                 Resume

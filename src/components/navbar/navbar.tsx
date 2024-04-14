@@ -42,7 +42,7 @@ export default function NavBar({toggleResumeDialogue}: Readonly<NavBarProps>) {
                         <MdClose className="w-6 h-6" />
                     </button>
                     <div className="flex flex-col items-start p-4 space-y-4">
-                        <NavButtons toggleResumeDialogue={toggleResumeDialogue}/>
+                        <NavButtons toggleResumeDialogue={toggleResumeDialogue} setIsMenuOpen={setIsMenuOpen}/>
                     </div>
                     {/* Icons */}
                     <div className="flex flex-col items-end p-4 space-y-4 self-end">
