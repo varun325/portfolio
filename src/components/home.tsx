@@ -1,8 +1,9 @@
 import Socials from "./socials";
 import { Experience } from "./experience/experience";
-import NavBar from "./navbar";
+import NavBar from "./navbar/navbar";
 import { experience_data } from "./experience/config/experience.config";
 import { description } from "@/constants/description";
+import ButtonBorderGlow from "./ui/buttonBorderGlow";
 export default function Component() {
     return (
         <div
@@ -28,12 +29,7 @@ export default function Component() {
                     <div className="text-2xl w-full sm:w-1/2">
                         <p>{description}</p>
                         <div className="flex items-start items-center space-x-4 mt-4">
-                            <button className="p-[3px] relative">
-                                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-                                <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
-                                    Contact me
-                                </div>
-                            </button>
+                            <ButtonBorderGlow text="Contact me" />
                             <div className="hidden sm:flex space-x-4">
                                 <Socials />
                             </div>
