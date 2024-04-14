@@ -1,20 +1,16 @@
 import { useState } from "react";
-import { AvatarImage, Avatar } from "@/components/ui/avatar";
 import { MdClose } from "react-icons/md";
 import Socials from "../socials";
 import NavButtons from "./components/navButtons";
 import ButtonBorderGlow from "../ui/buttonBorderGlow";
 import HamburgerIcon from "../icons/hamburgerIcon";
-export default function NavBar() {
+interface NavBarProps {
+    toggleResumeDialogue: () => void;
+}
+export default function NavBar({toggleResumeDialogue}: Readonly<NavBarProps>) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
-        <div className="flex justify-between items-center">
-            {/* Avatar and Badge */}
-            <div className="flex items-center space-x-4">
-                <Avatar>
-                    <AvatarImage alt="Profile image" src="" />
-                </Avatar>
-            </div>
+        <div className="flex justify-end">
             {/* Hamburger Menu */}
             <div className="sm:hidden">
                 <button
@@ -31,7 +27,7 @@ export default function NavBar() {
             </div>
             {/* Navigation */}
             <nav className="hidden sm:flex items-center space-x-6">
-                <NavButtons />
+                <NavButtons toggleResumeDialogue={toggleResumeDialogue}/>
                 <ButtonBorderGlow text="Contact me 👋" />
             </nav>
             {/* Mobile Navigation */}
@@ -46,7 +42,7 @@ export default function NavBar() {
                         <MdClose className="w-6 h-6" />
                     </button>
                     <div className="flex flex-col items-start p-4 space-y-4">
-                        <NavButtons />
+                        <NavButtons toggleResumeDialogue={toggleResumeDialogue}/>
                     </div>
                     {/* Icons */}
                     <div className="flex flex-col items-end p-4 space-y-4 self-end">

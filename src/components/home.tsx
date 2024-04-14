@@ -4,7 +4,16 @@ import NavBar from "./navbar/navbar";
 import { experience_data } from "./experience/config/experience.config";
 import { description } from "@/constants/description";
 import ButtonBorderGlow from "./ui/buttonBorderGlow";
+import Dialogue from "./ui/dialog";
+import { useState } from "react";
+import { Resume } from "./resumeViewer/resume";
 export default function Component() {
+    const [isResumeDialogueOpen, setIsResumeDialogueOpen] = useState(false);
+    const toggleResumeDialogue = () => {
+        setIsResumeDialogueOpen(
+            (isResumeDialogueOpen: boolean) => !isResumeDialogueOpen
+        );
+    };
     return (
         <div
             className="bg-black text-white min-h-screen flex flex-col"
@@ -12,8 +21,14 @@ export default function Component() {
             //     backgroundImage: "url('./src/assets/hero-pattern-dark.png')",
             // }}
         >
+            <Dialogue
+                isOpen={isResumeDialogueOpen}
+                setIsOpen={toggleResumeDialogue}
+            >
+                <Resume />
+            </Dialogue>
             <header className="px-4 py-4 sm:px-20 sm:py-10">
-                <NavBar />
+                <NavBar toggleResumeDialogue={toggleResumeDialogue} />
             </header>
             {/* Main Content */}
             <main className="px-4 py-4 sm:px-20 sm:py-10 flex-1">
@@ -29,7 +44,10 @@ export default function Component() {
                     <div className="text-2xl w-full sm:w-1/2">
                         <p>{description}</p>
                         <div className="flex items-start items-center space-x-4 mt-4">
-                            <ButtonBorderGlow text="Contact me" />
+                            <ButtonBorderGlow
+                                text="Contact me"
+                                onClick={() => {}}
+                            />
                             <div className="hidden sm:flex space-x-4">
                                 <Socials />
                             </div>
