@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { BsDownload, BsFullscreen } from "react-icons/bs";
-import resumeUrl from "../../assets/VarunSharma2023_FRONTEND.pdf";
+import { BsDownload, BsFullscreen, BsFullscreenExit } from "react-icons/bs";
+import resumeUrl from "/VarunSharma2023_FRONTEND.pdf";
 
-export function Resume() {
+export default function Resume() {
     const [isLoading, setIsLoading] = useState(true);
     const [isFullScreen, setIsFullScreen] = useState(false);
     const toggleFullScreen = () => {
@@ -48,14 +48,23 @@ export function Resume() {
                     allowFullScreen={true}
                 ></iframe>
             </div>
-            <div className="flex space-x-4">
-                <a href={resumeUrl} download>
+            <div className="flex justify-between items-center">
+                {/* Use justify-between to align one on the left and the other on the right */}
+                <a href={resumeUrl} download className="flex items-center">
+                    {/* Add items-center class to align the content vertically */}
                     <button aria-label="Download Resume">
                         <BsDownload className="w-6 h-6" />
                     </button>
                 </a>
-                <button onClick={toggleFullScreen} className="hidden sm:block">
-                    <BsFullscreen className="w-6 h-6" />
+                <button
+                    onClick={toggleFullScreen}
+                    className="hidden sm:block sm:self-end self-end"
+                >
+                    {isFullScreen ? (
+                        <BsFullscreenExit className="w-6 h-6" />
+                    ) : (
+                        <BsFullscreen className="w-6 h-6" />
+                    )}
                 </button>
             </div>
         </div>

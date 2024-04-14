@@ -5,8 +5,8 @@ import { experience_data } from "./experience/config/experience.config";
 import { description } from "@/constants/description";
 import ButtonBorderGlow from "./ui/buttonBorderGlow";
 import Dialogue from "./ui/dialog";
-import { useState } from "react";
-import { Resume } from "./resumeViewer/resume";
+import { useState, lazy, Suspense } from "react";
+const Resume = lazy(() => import("./resumeViewer/resume"));
 export default function Component() {
     const [isResumeDialogueOpen, setIsResumeDialogueOpen] = useState(false);
     const toggleResumeDialogue = () => {
@@ -25,7 +25,11 @@ export default function Component() {
                 isOpen={isResumeDialogueOpen}
                 setIsOpen={toggleResumeDialogue}
             >
-                <Resume />
+                {isResumeDialogueOpen && (
+                    <Suspense fallback={<div>Loading Resume...</div>}>
+                        <Resume />
+                    </Suspense>
+                )}
             </Dialogue>
             <header className="px-4 py-4 sm:px-20 sm:py-10">
                 <NavBar toggleResumeDialogue={toggleResumeDialogue} />
