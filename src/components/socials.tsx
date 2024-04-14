@@ -30,7 +30,7 @@ export default function Socials() {
                 BsLinkedin,
                 // BsMessenger,
                 // BsWhatsapp,
-                BsTwitterX,
+                // BsTwitterX,
                 BsTelegram,
                 MdOutlineAlternateEmail,
             ].map((Icon) => (
