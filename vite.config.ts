@@ -13,5 +13,5 @@ export default defineConfig({
     build: {
         cssMinify: true,
     },
-    base : '/',
+    base : '/portfolio/',
 });
