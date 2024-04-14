@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { BsDownload } from "react-icons/bs";
+import { BsDownload, BsFullscreen } from "react-icons/bs";
 import resumeUrl from "../../assets/VarunSharma2023_FRONTEND.pdf";
 
 export function Resume() {
     const [isLoading, setIsLoading] = useState(true);
-
+    const [isFullScreen, setIsFullScreen] = useState(false);
+    const toggleFullScreen = () => {
+        setIsFullScreen((isFullScreen) => !isFullScreen);
+    };
     // Function to handle iframe load event
     const handleLoad = () => {
         setIsLoading(false); // Set isLoading to false when iframe finishes loading
@@ -14,10 +17,10 @@ export function Resume() {
         <div
             className="max-w-md mx-auto bg-[#18181B] p-8 rounded-lg shadow-lg backdrop-filter backdrop-blur-lg"
             style={{
-                maxWidth: "850px",
+                maxWidth: isFullScreen ? "70%" : "850px",
                 width: "90vw",
-                height: "auto",
-                overflow: "hidden",
+                height: isFullScreen ? "80%" : "auto",
+                overflow: "auto",
             }}
         >
             <h1 className="text-2xl font-bold mb-4">Resume Viewer</h1>
@@ -42,11 +45,19 @@ export function Resume() {
                     allow="autoplay"
                     className={`w-full h-full ${isLoading ? "hidden" : ""}`}
                     onLoad={handleLoad}
+                    allowFullScreen={true}
                 ></iframe>
             </div>
-            <button aria-label="Download Resume">
-                <BsDownload className="w-6 h-6" />
-            </button>
+            <div className="flex space-x-4">
+                <a href={resumeUrl} download>
+                    <button aria-label="Download Resume">
+                        <BsDownload className="w-6 h-6" />
+                    </button>
+                </a>
+                <button onClick={toggleFullScreen} className="hidden sm:block">
+                    <BsFullscreen className="w-6 h-6" />
+                </button>
+            </div>
         </div>
     );
 }
