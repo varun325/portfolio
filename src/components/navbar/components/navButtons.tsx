@@ -9,18 +9,18 @@ export default function NavButtons({
     toggleResumeDialogue,
     setIsMenuOpen,
 }: Readonly<NavButtonsProps>) {
-    const toggleResumeViewer = () => {
-        toggleResumeDialogue();
-        if (setIsMenuOpen) setIsMenuOpen(false);
-    };
-    buttonMap.set("Resume", toggleResumeViewer);
+    buttonMap.set("Resume", toggleResumeDialogue);
     return (
         <>
             {links.map((link) => (
                 <a key={link.name} href={link.to} className="no-underline">
                     <button
                         className="text-white flex items-center font-semibold hover:underline-none"
-                        onClick={buttonMap.get(link.name)}
+                        onClick={() => {
+                            const handler = buttonMap.get(link.name);
+                            if (handler) handler();
+                            if (setIsMenuOpen) setIsMenuOpen(false);
+                        }}
                     >
                         {link.name}
                     </button>
