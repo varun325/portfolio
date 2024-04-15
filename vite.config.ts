@@ -11,21 +11,6 @@ export default defineConfig({
     },
     build: {
         cssMinify: true,
-        rollupOptions: {
-            output: {
-                manualChunks(id) {
-                    // Extracting component names from the file path
-                    const match = /src\/components\/(.*)/.exec(id);
-                    if (match) {
-                        // If file is inside the components directory
-                        let chunkName = match[1];
-                        // Remove file extensions
-                        chunkName = chunkName.replace(/\.(jsx?|tsx?|js?|ts?)$/, "");
-                        return `components/${chunkName}`;
-                    }
-                },
-            },
-        },
     },
     base: "/portfolio/",
 });
