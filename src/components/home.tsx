@@ -44,7 +44,7 @@ export default function Component() {
                         Experienced Full Stack Engineer
                     </h1>
                 </div>
-                <section className="mt-6 flex justify-end">
+                <section id="experience" className="mt-6 flex justify-end">
                     <div className="text-2xl w-full sm:w-1/2">
                         <p>{description}</p>
                         <div className="flex items-start items-center space-x-4 mt-4">

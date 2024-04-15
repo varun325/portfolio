@@ -1,34 +1,31 @@
+import { links } from "../conf/navbar.config";
 interface NavButtonsProps {
     toggleResumeDialogue: () => void;
     setIsMenuOpen?: (isMenuOpen: boolean) => void;
 }
+const buttonMap = new Map<string, () => void>();
+
 export default function NavButtons({
     toggleResumeDialogue,
     setIsMenuOpen,
 }: Readonly<NavButtonsProps>) {
+    const toggleResumeViewer = () => {
+        toggleResumeDialogue();
+        if (setIsMenuOpen) setIsMenuOpen(false);
+    };
+    buttonMap.set("Resume", toggleResumeViewer);
     return (
         <>
-            <button
-                className="text-white flex items-center font-semibold hover:underline-none"
-                onClick={() => {
-                    toggleResumeDialogue();
-                    if (setIsMenuOpen) setIsMenuOpen(false);
-                }}
-            >
-                Resume
-            </button>
-            <button className="text-white flex items-center font-semibold hover:underline-none">
-                Skills
-            </button>
-            <button className="text-white flex items-center font-semibold hover:underline-none">
-                Experience
-            </button>
-            <button className="text-white flex items-center font-semibold hover:underline-none">
-                Projects
-            </button>
-            <button className="text-white flex items-center font-semibold hover:underline-none">
-                Certifications
-            </button>
+            {links.map((link) => (
+                <a key={link.name} href={link.to} className="no-underline">
+                    <button
+                        className="text-white flex items-center font-semibold hover:underline-none"
+                        onClick={buttonMap.get(link.name)}
+                    >
+                        {link.name}
+                    </button>
+                </a>
+            ))}
         </>
     );
 }
