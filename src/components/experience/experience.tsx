@@ -6,21 +6,18 @@ export const Experience = ({
     experience_data: ExperienceData[];
 }) => {
     return (
-        <div className="flex flex-col justify-center items-start mt-10 bg-black-10 gap-4 sm:flex-row">
-            <h1 className="w-full sm:w-1/2">Work Experience</h1>
-            <div className="w-full sm:w-1/2">
-                {experience_data.map((data) => (
-                    <div key={uuid()} className="mb-5">
-                        <h2 className="text-[#FEF9C3]">{data.title}</h2>
-                        <h3 className="pt-1">{data.date}</h3>
-                        <ul className="text-[#D6D3D1]">
-                            {data.experience_list.map((experience) => (
-                                <li key={uuid()}>{experience}</li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </div>
-        </div>
+        <>
+            {experience_data.map((data) => (
+                <div key={uuid()} className="mb-5">
+                    <h2 className="text-[#FEF9C3]">{data.title}</h2>
+                    <h3 className="pt-1">{data.date}</h3>
+                    <ul className="text-[#D6D3D1]">
+                        {data.experience_list.map((experience) => (
+                            <li key={uuid()}>{experience}</li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </>
     );
 };

@@ -5,7 +5,7 @@ export const links = [
     },
     {
         name: "Skills",
-        to: "#",
+        to: "#skills",
     },
     {
         name: "Experience",
