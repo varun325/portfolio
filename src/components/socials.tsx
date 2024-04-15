@@ -4,7 +4,9 @@ import {
     BsWhatsapp,
     BsTwitterX,
     BsTelegram,
+    BsGithub,
 } from "react-icons/bs";
+import { SiLeetcode } from "react-icons/si";
 import { IconType } from "react-icons/lib";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { v4 as uuid } from "uuid";
@@ -21,7 +23,15 @@ const socialButtonsAriaLabels: Map<IconType, { title: string; url: string }> =
         [BsWhatsapp, { title: "Whatsapp", url: "#" }],
         [BsTwitterX, { title: "Twitter", url: "#" }],
         [BsTelegram, { title: "Telegram", url: "https://t.me/Iitaadorii" }],
-        [MdOutlineAlternateEmail, { title: "Email", url: "mailto:sharmavarun1300@gmail.com" }],
+        [BsGithub, { title: "Github", url: "https://github.com/varun325" }],
+        [
+            SiLeetcode,
+            { title: "LeetCode", url: "https://leetcode.com/varun325" },
+        ],
+        [
+            MdOutlineAlternateEmail,
+            { title: "Email", url: "mailto:sharmavarun1300@gmail.com" },
+        ],
     ]);
 export default function Socials() {
     return (
@@ -31,6 +41,8 @@ export default function Socials() {
                 // BsMessenger,
                 // BsWhatsapp,
                 // BsTwitterX,
+                BsGithub,
+                SiLeetcode,
                 BsTelegram,
                 MdOutlineAlternateEmail,
             ].map((Icon) => (
