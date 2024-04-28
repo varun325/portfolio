@@ -30,7 +30,7 @@ export const links = Object.freeze([
 export const navItems = Object.freeze([
     {
         name: "Home",
-        link: "/",
+        link: "#",
         icon: <MdHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
     },
     {
