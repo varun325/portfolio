@@ -2,7 +2,7 @@ export const skillsData = [
     {
         title: "Frontend",
         description:
-            "3+ Years of experience in build fast and responsive front-end applications",
+            "3+ Years of experience in building fast and responsive front-end applications",
         skills: [
             "Redux",
             "React",
@@ -17,13 +17,13 @@ export const skillsData = [
     },
     {
         title: "Backend",
-        description: "Experience in building and deploying scalable backends",
+        description: "Experience in building and deploying scalable backend applications",
         skills: ["Node.js", "Express", "Springboot", "Java"],
     },
     {
         title: "Cloud/DevOps",
         description:
-            "Experience in building and deploying complex application on hybrid cloud environments and implmening CI/CD pipelines for those",
+            "Experience in building and deploying complex applications on hybrid cloud environments and implmening CI/CD pipelines for the same",
         skills: [
             "Kubernetes & Docker Compose",
             "Azure DevOps & Git Actions",
@@ -36,7 +36,7 @@ export const skillsData = [
     {
         title: "Agile",
         description:
-            "Experience in working with cross-functional teams in an Agile environments with internation clients",
+            "Experience in working with cross-functional teams in an Agile environments with international clients",
         skills: [
             "Agile",
             "Scrum",

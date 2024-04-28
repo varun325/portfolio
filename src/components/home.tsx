@@ -8,6 +8,8 @@ import Section from "./section";
 import Skills from "./skills/skills";
 import { skillsData } from "./skills/config/skills.config";
 const Resume = lazy(() => import("./resumeViewer/resume"));
+
+
 export default function Component() {
     const [isResumeDialogueOpen, setIsResumeDialogueOpen] = useState(false);
     const toggleResumeDialogue = () => {
