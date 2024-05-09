@@ -8,6 +8,7 @@ import Section from "./section";
 import Skills from "./skills/skills";
 import { skillsData } from "./skills/config/skills.config";
 import { useHome } from "@/context/homeContext";
+import LoadingSpinner from "./ui/loadingSpinner";
 const Resume = lazy(() => import("./resumeViewer/resume"));
 
 export default function Component() {
@@ -25,7 +26,7 @@ export default function Component() {
                 setIsOpen={toggleResumeDialogue}
             >
                 {isResumeDialogueOpen && (
-                    <Suspense fallback={<div>Loading Resume...</div>}>
+                    <Suspense fallback={<LoadingSpinner />}>
                         <Resume />
                     </Suspense>
                 )}
