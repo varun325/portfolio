@@ -1,10 +1,12 @@
 import "./App.css";
 import Home from "./components/home";
+import { HomeProvider } from "./context/homeContext";
 
 function App() {
-
     return (
-        <Home/>
+        <HomeProvider>
+            <Home />
+        </HomeProvider>
     );
 }
 

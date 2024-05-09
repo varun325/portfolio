@@ -11,6 +11,8 @@ export default defineConfig({
     },
     build: {
         cssMinify: true,
+        cssCodeSplit: true,
+        minify: true,
     },
     base: "/portfolio/",
 });

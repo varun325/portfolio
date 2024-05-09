@@ -6,6 +6,7 @@ import ButtonBorderGlow from "../ui/buttonBorderGlow";
 import HamburgerIcon from "../icons/hamburgerIcon";
 import { FloatingNav } from "./floatingNav";
 import { navItems } from "./conf/navbar.config";
+import { useHome } from "@/context/homeContext";
 interface NavBarProps {
     toggleResumeDialogue: () => void;
 }
@@ -13,12 +14,15 @@ export default function NavBar({
     toggleResumeDialogue,
 }: Readonly<NavBarProps>) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { isResumeDialogueOpen } = useHome();
     return (
         <>
-            <FloatingNav
-                navItems={navItems}
-                toggleResume={toggleResumeDialogue}
-            />
+            {!isResumeDialogueOpen && (
+                <FloatingNav
+                    navItems={navItems}
+                    toggleResume={toggleResumeDialogue}
+                />
+            )}
             <div className="flex justify-end">
                 {/* Hamburger Menu */}
                 <div className="sm:hidden">
