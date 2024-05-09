@@ -1,16 +1,36 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { BsDownload, BsFullscreen, BsFullscreenExit } from "react-icons/bs";
 import resumeUrl from "/VarunSharma2023_FRONTEND.pdf";
+import PdfViewer from "./components/pdfViewer/pdfViewer";
+import { MdOutlineFirstPage, MdOutlineLastPage } from "react-icons/md";
 
 export default function Resume() {
-    const [isLoading, setIsLoading] = useState(true);
     const [isFullScreen, setIsFullScreen] = useState(false);
-    const toggleFullScreen = () => {
-        setIsFullScreen((isFullScreen) => !isFullScreen);
+    const pdfContainerRef = useRef({} as HTMLDivElement);
+    const [numPages, setNumPages] = useState<number>(0);
+    const [pageNumber, setPageNumber] = useState<number>(1);
+    const goToPreviousPage = () => {
+        if (pageNumber > 1) {
+            setPageNumber(pageNumber - 1);
+        }
     };
-    // Function to handle iframe load event
-    const handleLoad = () => {
-        setIsLoading(false); // Set isLoading to false when iframe finishes loading
+
+    const goToNextPage = () => {
+        if (pageNumber < numPages) {
+            setPageNumber(pageNumber + 1);
+        }
+    };
+    const toggleFullScreen = () => {
+        if (!isFullScreen) {
+            // If not fullscreen, request fullscreen
+            if (pdfContainerRef.current.requestFullscreen) {
+                pdfContainerRef.current.requestFullscreen();
+            }
+        } else if (document.exitFullscreen) {
+            // If already fullscreen, exit fullscreen
+            document.exitFullscreen();
+        }
+        setIsFullScreen((prev) => !prev);
     };
 
     return (
@@ -22,6 +42,7 @@ export default function Resume() {
                 height: isFullScreen ? "80%" : "auto",
                 overflow: "auto",
             }}
+            ref={pdfContainerRef} // Set ref to the container
         >
             <h1 className="text-2xl font-bold mb-4">Resume Viewer</h1>
             <div
@@ -30,36 +51,39 @@ export default function Resume() {
                     width: "100%",
                     aspectRatio: "16/9",
                     position: "relative",
+                    height: isFullScreen ? "90%" : "60%",
+                    overflow: "scroll",
                 }}
             >
-                {isLoading && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <p className="text-gray-400">Loading...</p>
-                    </div>
-                )}
-                <iframe
-                    title="Resume"
-                    src={`${resumeUrl}#toolbar=0`}
-                    width="100%"
-                    height="100%"
-                    allow="autoplay"
-                    className={`w-full h-full ${isLoading ? "hidden" : ""}`}
-                    onLoad={handleLoad}
-                    allowFullScreen={true}
-                ></iframe>
+                <PdfViewer
+                    fileUrl={resumeUrl}
+                    isFullScreen={isFullScreen}
+                    setNumPages={setNumPages}
+                    pageNumber={pageNumber}
+                />
             </div>
             <div className="flex justify-between items-center">
-                {/* Use justify-between to align one on the left and the other on the right */}
                 <a href={resumeUrl} download className="flex items-center">
-                    {/* Add items-center class to align the content vertically */}
                     <button aria-label="Download Resume">
                         <BsDownload className="w-6 h-6" />
                     </button>
                 </a>
                 <button
-                    onClick={toggleFullScreen}
-                    className="hidden sm:block sm:self-end self-end"
+                    aria-label="go to previous page of resume"
+                    onClick={goToPreviousPage}
                 >
+                    <MdOutlineFirstPage className="w-6 h-6" />
+                </button>
+                <p>
+                    Page {pageNumber} of {numPages}
+                </p>
+                <button
+                    aria-label="go to next page of resume"
+                    onClick={goToNextPage}
+                >
+                    <MdOutlineLastPage className="w-6 h-6" />
+                </button>
+                <button onClick={toggleFullScreen} className=" self-end">
                     {isFullScreen ? (
                         <BsFullscreenExit className="w-6 h-6" />
                     ) : (

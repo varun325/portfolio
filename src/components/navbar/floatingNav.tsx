@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react";
 import {
     motion,
@@ -7,6 +6,7 @@ import {
     useMotionValueEvent,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { v4 as uuid } from "uuid";
 
 const preventClick = (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -63,9 +63,9 @@ export const FloatingNav = ({
                     className
                 )}
             >
-                {navItems.map((navItem: any, idx: number) => (
+                {navItems.map((navItem: any) => (
                     <a
-                        key={`link=${idx}`}
+                        key={uuid()}
                         href={navItem.link}
                         onClick={buttonMap.get(navItem.link)}
                         className={cn(

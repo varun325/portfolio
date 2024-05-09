@@ -2,16 +2,17 @@ import { Experience } from "./experience/experience";
 import NavBar from "./navbar/navbar";
 import { experience_data } from "./experience/config/experience.config";
 import Dialogue from "./ui/dialog";
-import { useState, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import About from "./about";
 import Section from "./section";
 import Skills from "./skills/skills";
 import { skillsData } from "./skills/config/skills.config";
+import { useHome } from "@/context/homeContext";
 const Resume = lazy(() => import("./resumeViewer/resume"));
 
-
 export default function Component() {
-    const [isResumeDialogueOpen, setIsResumeDialogueOpen] = useState(false);
+    const { isResumeDialogueOpen, setIsResumeDialogueOpen } = useHome();
+
     const toggleResumeDialogue = () => {
         setIsResumeDialogueOpen(
             (isResumeDialogueOpen: boolean) => !isResumeDialogueOpen
