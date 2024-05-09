@@ -1,5 +1,5 @@
 // HomeContext.tsx
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useMemo } from "react";
 
 interface HomeContextType {
     isResumeDialogueOpen: boolean;
@@ -16,11 +16,12 @@ export const useHome = () => useContext(HomeContext);
 export const HomeProvider = ({ children }: any) => {
     const [isResumeDialogueOpen, setIsResumeDialogueOpen] =
         useState<boolean>(false);
+    const contextValue = useMemo(() => {
+        return { isResumeDialogueOpen, setIsResumeDialogueOpen };
+    }, [isResumeDialogueOpen, setIsResumeDialogueOpen]);
 
     return (
-        <HomeContext.Provider
-            value={{ isResumeDialogueOpen, setIsResumeDialogueOpen }}
-        >
+        <HomeContext.Provider value={contextValue}>
             {children}
         </HomeContext.Provider>
     );
